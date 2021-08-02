@@ -1,0 +1,3 @@
+export enum Status{
+  READING,PLAN_TO_READ,COMPLETED,DROPPED,NO_STATUS
+}

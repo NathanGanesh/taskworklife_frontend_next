@@ -1,0 +1,26 @@
+<div fxLayout="row" >
+  <mat-toolbar class="flexSpaceBetween" color="primary">
+
+    <mat-form-field class="example-full-width" floatLabel="never">
+      <input matInput placeholder="Search" [(ngModel)]="searchKeyword">
+    </mat-form-field>
+
+
+
+    <a mat-flat-button routerLink="create"><mat-icon inline=true>book</mat-icon>Add book</a>
+
+
+  </mat-toolbar>
+  <mat-grid-list #grid cols="4" rowHeight="100px"
+                 gutterSize="16px">
+
+    <mat-grid-tile fxFlex="20%;">
+      <button mat-icon-button color="warn">
+        <mat-icon>add</mat-icon>
+      </button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+<div class="courses-list">
+  <app-book-list [searchValue]="searchKeyword" [books]="books$" (bookDeleted)="deleteBook($event)" (addNoteToBook)="addNoteToBook($event)" ></app-book-list>
+</div>

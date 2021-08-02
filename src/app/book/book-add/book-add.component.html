@@ -1,0 +1,109 @@
+<mat-toolbar color="primary" class="flexSpaceBetween">
+  <a mat-flat-button routerLink="/book" class="button-link"><mat-icon >arrow_back</mat-icon>Back</a>
+
+  <h1 class="fill-remaining-space">Add new book</h1>
+</mat-toolbar>
+
+<div class="container">
+  <form [formGroup]="bookForm" class="form"
+        #myForm="ngForm"
+        (ngSubmit)="onSubmit()">
+    <mat-form-field class="form-element">
+      <input matInput placeholder="New book title"
+             formControlName="name">
+      <mat-error
+        *ngIf="!bookForm.controls.name.valid && bookForm.controls.name.touched">
+        {{ 'This field is required' }}
+      </mat-error>
+    </mat-form-field>
+
+
+    <app-input-chip-auto-complete
+      [allCategories]="allCategories"
+      [selectedItems]="selectedCategories"
+      [inputName]="inputName"
+      [inputLabel]="inputLabel"
+    ></app-input-chip-auto-complete>
+
+    <mat-form-field class="form-element">
+      <input matInput placeholder="Final page"
+             type="number"
+             formControlName="finalPage">
+      <mat-error
+        *ngIf="!bookForm.controls.finalPage.valid && bookForm.controls.finalPage.touched">
+        {{ 'This field is required' }}
+      </mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field class="form-element">
+      <input matInput placeholder="Current page"
+             type="number"
+             formControlName="currentPage">
+    </mat-form-field>
+    <mat-error
+      *ngIf="bookForm.errors?.error">
+      {{ 'The current page has to be bigger then the final page and cant be a string' }}
+    </mat-error>
+
+
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status">
+        <mat-option *ngFor="let item of selectedItems"
+                    [value]="item.value">
+          {{item.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field class="form-element">
+      <input matInput placeholder="Author"
+             formControlName="author">
+      <mat-error
+        *ngIf="!bookForm.controls.finalPage.valid && bookForm.controls.finalPage.touched">
+        {{ 'This field is required' }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-element">
+      <input matInput
+             [matDatepicker]="picker"
+             placeholder="Start date"
+             formControlName="startDate"
+           >
+      <mat-datepicker-toggle matSuffix
+                             [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="form-element">
+      <input matInput
+             [matDatepicker]="picker2"
+             placeholder="End date"
+             formControlName="endDate"
+            >
+      <mat-datepicker-toggle matSuffix
+                             [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+    <mat-error
+      *ngIf="bookForm.errors?.dateError">
+      {{ 'Start date cant be over End date' }}
+    </mat-error>
+    <div>
+      <input #Image type="file" accept=".png, .jpg, .jpeg"
+             (change)="onFileChanged($event)"/>
+    </div>
+
+    <div class="form-element submit-button">
+      <button mat-raised-button color="primary"
+              type="submit" class="button"
+              [disabled]="!bookForm.valid">Submit Form
+      </button>
+    </div>
+  </form>
+
+
+</div>

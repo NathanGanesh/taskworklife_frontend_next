@@ -1,0 +1,26 @@
+<mat-form-field class="example-chip-list" >
+  <mat-label>{{inputLabel}}</mat-label>
+  <mat-chip-list #chipList aria-label="Fruit selection">
+    <mat-chip
+      *ngFor="let selectedCategory of selectedItems"
+      [selectable]="selectable"
+      [removable]="removable"
+      (removed)="remove(selectedCategory)">
+      {{selectedCategory}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+    <input
+      placeholder={{inputName}}
+      #fruitInput
+      [formControl]="formControl"
+      [matAutocomplete]="auto"
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+    <mat-option *ngFor="let item of filteredItems | async" [value]="item">
+      {{item}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

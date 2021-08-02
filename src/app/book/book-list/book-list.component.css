@@ -1,0 +1,20 @@
+.book{
+  cursor: pointer;
+  font-size: 40px;
+}
+
+.delete{
+  cursor: pointer;
+  margin: 12px;
+}
+
+.bookItem{
+  height: 225px;
+}
+button{
+ margin: 60px;
+  padding: 20px;
+}
+
+
+

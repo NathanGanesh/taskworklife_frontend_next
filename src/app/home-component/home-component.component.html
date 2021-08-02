@@ -1,0 +1,53 @@
+<!--<mat-toolbar color="primary" class="example-toolbar">-->
+<!--  <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>-->
+<!--  <h1 class="example-app-name">Responsive App</h1>-->
+<!--</mat-toolbar>-->
+
+<mat-sidenav-container fullscreen>
+  <mat-sidenav #sidenav  mode="side" [ngStyle]="{ 'width.em': sidenavWidth }" opened="true" (mouseenter)="increase()"
+               (mouseleave)="decrease()">
+    <div class="logomain">Logo Part</div>
+    <mat-nav-list>
+      <mat-list-item routerLink="/" routerLinkActive="active" >
+        <mat-icon mat-list-icon>inbox</mat-icon>
+<!--        <mat-icon mat-list-icon>person</mat-icon>-->
+        <div fxFlex="10"></div>
+        <div *ngIf="sidenavWidth > 6" class="sidenav-item">
+          <h5 class="lead">About</h5>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item routerLink="2" routerLinkActive="active">
+        <mat-icon mat-list-icon>settings</mat-icon>
+        <div fxFlex="10"></div>
+        <div *ngIf="sidenavWidth > 6" class="sidenav-item">
+          <h5 class="lead">Settings</h5>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item routerLink="3" routerLinkActive="active">
+        <mat-icon mat-list-icon>local_phone</mat-icon>
+        <div fxFlex="10"></div>
+        <div *ngIf="sidenavWidth > 6" class="sidenav-item">
+          <h5 class="lead">Contact</h5>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item routerLink="book" routerLinkActive="active">
+        <mat-icon mat-list-icon>book</mat-icon>
+        <div fxFlex="10"></div>
+        <div *ngIf="sidenavWidth > 6" class="sidenav-item">
+          <h5 class="lead">Book</h5>
+        </div>
+      </mat-list-item>
+
+    </mat-nav-list>
+
+  </mat-sidenav>
+
+  <div class="example-sidenav-content">
+     <router-outlet></router-outlet>
+  </div>
+
+
+</mat-sidenav-container>
