@@ -10,6 +10,7 @@ import {Book} from "../../shared/interfaces/book";
 })
 export class BookDetailComponent implements OnInit {
   id: number = -1;
+  // @ts-ignore
   book: Book = new Book();
   constructor(private route: ActivatedRoute,private bookService:BookService) {
   }

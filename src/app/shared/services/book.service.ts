@@ -47,4 +47,10 @@ export class BookService {
     return this.http.post<AddBook>(`${this.apiServerUrl}/save`, bookItem, options)
   }
 
+  editBook(editBook: Book) {
+    let options = {
+      headers: new HttpHeaders().set('Content-Type', 'application/json')
+    };
+    return this.http.post<Book>(`${this.apiServerUrl}/edit`, editBook, options)
+  }
 }
