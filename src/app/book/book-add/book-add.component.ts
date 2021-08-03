@@ -144,26 +144,63 @@ export class BookAddComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.id===-1){
+      this.addBook();
+    }else{
+      this.onEditSubmit();
+    }
+  }
+
+  addBook(){
+    console.log("addBook")
     let value = this.bookForm.value;
     //FormData API provides methods and properties to allow us easily prepare form data to be sent with POST HTTP requests.
-    let reqObject: AddBook;
+    let newBook: AddBook;
     const uploadImageData = new FormData();
 
     if (this.selectedFile != null) {
       uploadImageData.append('image', this.selectedFile);
-      reqObject = {
+      newBook = {
         ...value,
         categories: this.selectedCategories,
         image: uploadImageData
       }
     } else {
-      reqObject = {
+      newBook = {
         ...value,
         categories: this.selectedCategories,
       }
     }
-    console.log(reqObject)
-    this.bookService.addBook(reqObject).subscribe();
+    console.log(newBook)
+    this.bookService.addBook(newBook).subscribe();
+    setTimeout(() => this.formGroupDirective.resetForm(), 0)
+    this.selectedCategories = []
+    this.selectedFile = null;
+  }
+  onEditSubmit(){
+    console.log("editBook")
+    let value = this.bookForm.value;
+    let newBook: Book;
+    const uploadImageData = new FormData();
+    if (this.selectedFile != null) {
+      uploadImageData.append('image', this.selectedFile);
+      newBook = {
+        ...value,
+        id:this.id,
+        bookNoteArrayList:this.book.bookNoteArrayList,
+        categories: this.selectedCategories,
+        image: uploadImageData
+      }
+    } else {
+      newBook = {
+        ...value,
+        id:this.id,
+        bookNoteArrayList:this.book.bookNoteArrayList,
+        categories: this.selectedCategories,
+      }
+    }
+    console.log(newBook)
+    this.bookService.editBook(newBook).subscribe();
     setTimeout(() => this.formGroupDirective.resetForm(), 0)
     this.selectedCategories = []
     this.selectedFile = null;
