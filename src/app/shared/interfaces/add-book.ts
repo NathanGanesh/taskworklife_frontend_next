@@ -1,11 +1,8 @@
 import {BookNote} from "./book-note";
+import {Status} from "./status";
 
-enum Status{
-  READING,CURRENTLY_READING,PLAN_TO_READ,COMPLETED,DROPPED
-}
 
 export class AddBook {
-  id?:number;
   name:string;
   bookNoteArrayList?:BookNote[]= [];
   categories:string[];
@@ -17,9 +14,7 @@ export class AddBook {
   endDate?:Date;
   file?:File;
 
-
-  constructor(id: number = -1, name: string, bookNoteArrayList: BookNote[], categories: string[], currentPage: number, finalPage: number, status: Status, author: string, startDate: Date, endDate: Date, file: File) {
-    this.id = id;
+  constructor(name: string = "", bookNoteArrayList: BookNote[], categories: string[] = [], currentPage: number, finalPage: number = -1, status: Status = Status.NO_STATUS, author: string = "", startDate: Date, endDate: Date, file: File) {
     this.name = name;
     this.bookNoteArrayList = bookNoteArrayList;
     this.categories = categories;

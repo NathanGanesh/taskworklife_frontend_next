@@ -1,7 +1,13 @@
 <mat-toolbar color="primary" class="flexSpaceBetween">
   <a mat-flat-button routerLink="/book" class="button-link"><mat-icon >arrow_back</mat-icon>Back</a>
+  <div *ngIf="id!=-1;else other_content">
+    <h1 class="fill-remaining-space">Edit new book</h1>
+  </div>
 
-  <h1 class="fill-remaining-space">Add new book</h1>
+  <ng-template #other_content>
+    <h1 class="fill-remaining-space">Add new book</h1>
+   </ng-template>
+
 </mat-toolbar>
 
 <div class="container">

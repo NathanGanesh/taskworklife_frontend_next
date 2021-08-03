@@ -1,20 +1,49 @@
-.book{
+.book {
   cursor: pointer;
-  font-size: 40px;
+  text-align: center;
+  padding-top: 125px;
 }
 
-.delete{
+.delete {
   cursor: pointer;
   margin: 12px;
 }
 
-.bookItem{
-  height: 225px;
+.bookItem {
+  height: 250px;
+  display: flex;
+  justify-content: space-between;
 }
-button{
- margin: 60px;
+
+buttonAdd {
+  margin: 60px;
   padding: 20px;
 }
 
+button {
+  margin-left: 25px;
+}
+
+.fill-remaining-space {
+  margin-right: 60px;
+}
+
+.example-header-image {
+  margin-top: 220px;
+}
+
+.a1 {
+  display: flex;
+  justify-content: space-between;
+}
 
 
+
+.bookList {
+  margin-top: 30px;
+}
+
+.example-card {
+
+  margin: 4px
+}

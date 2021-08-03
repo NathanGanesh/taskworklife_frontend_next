@@ -12,6 +12,7 @@ import {DialogOverviewExampleDialog} from "../../dialog-overview/dialog-overview
 import {AddNoteResp} from "../../shared/interfaces/add-note-resp";
 import {BookService} from "../../shared/services/book.service";
 import {tap} from "rxjs/operators";
+import {AddBook} from "../../shared/interfaces/add-book";
 
 
 @Component({
@@ -24,6 +25,7 @@ export class BookListComponent implements OnInit {
   @Output() courseSelected = new EventEmitter<Book>();
   @Output() bookDeleted = new EventEmitter<number>();
   @Output() addNoteToBook = new EventEmitter<AddNoteResp>();
+
 
   @Input() searchValue:string = '';
 
@@ -55,6 +57,7 @@ export class BookListComponent implements OnInit {
       console.log(result)
     });
   }
+
 
 
 }

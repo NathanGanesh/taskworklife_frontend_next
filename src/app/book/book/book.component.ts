@@ -5,6 +5,7 @@ import {Book} from "../../shared/interfaces/book";
 import { tap } from 'rxjs/operators';
 import {HttpErrorResponse} from "@angular/common/http";
 import {AddNoteResp} from "../../shared/interfaces/add-note-resp";
+import {AddBook} from "../../shared/interfaces/add-book";
 
 
 @Component({

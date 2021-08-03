@@ -35,13 +35,14 @@ import {CustomDateAdapter} from "../../shared/helpers/custom-date-adapter";
 export class BookAddComponent implements OnInit {
 
   allCategories: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry', 'aap'];
-  selectedCategories: string[] = ['Psychology'];
+  selectedCategories: string[] = [];
   inputName = "Select category"
   // @ts-ignore
   bookForm: FormGroup;
   books$: Book[] = [];
   id: number = -1;
-  book: Book = new Book();
+  // @ts-ignore
+  book: Book;
   // @ts-ignore
   selectedFile: any = null;
   inputLabel: string = "Categories";
@@ -74,21 +75,15 @@ export class BookAddComponent implements OnInit {
   }
 
 
-  // name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-  // currentPage: new FormControl(''),
-  // finalPage: new FormControl('', [Validators.required]),
-  // author: new FormControl('', [Validators.required]),
-  // status: new FormControl("NO_STATUS", [Validators.required, ]),
-  // startDate: new FormControl('', ),
-  // endDate: new FormControl(''),
+
   ngOnInit(): void {
     this.bookForm = new FormGroup({
-      name: new FormControl('Man and his symbols', [Validators.required, Validators.minLength(3)]),
-      currentPage: new FormControl(),
-      finalPage: new FormControl(490, [Validators.required]),
-      author: new FormControl('Carl jung', [Validators.required]),
-      status: new FormControl("NO_STATUS", [Validators.required,]),
-      startDate: new FormControl('',),
+      name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      currentPage: new FormControl(''),
+      finalPage: new FormControl('', [Validators.required]),
+      author: new FormControl('', [Validators.required]),
+      status: new FormControl("NO_STATUS", [Validators.required, ]),
+      startDate: new FormControl('', ),
       endDate: new FormControl(''),
       // @ts-ignore
     }, {validators: [this.customCheckMinValueInput(), this.checkDateInRange()]})
@@ -97,10 +92,26 @@ export class BookAddComponent implements OnInit {
       this.id = this.route.snapshot.params['id'];
       this.bookService.getBookById(this.id).subscribe(data => {
         this.book = data;
-        console.log(data)
-      }, error => console.log(error))
+        this.selectedCategories = data.categories;
+        // let currentPage = data.bookNoteArrayList.length!==0
+        // data?.bookNoteArrayList?.length!=0? data?.bookNoteArrayList[data.bookNoteArrayList.length-1]?.pageNumber : ""
+        this.bookForm = new FormGroup({
+          name: new FormControl(data.name, [Validators.required, Validators.minLength(3)]),
+          currentPage: new FormControl( data.bookNoteArrayList?.length!==0?data.bookNoteArrayList[data.bookNoteArrayList.length-1].pageNumber:""),
+          finalPage: new FormControl(data.finalPage, [Validators.required]),
+          author: new FormControl(data.author, [Validators.required]),
+          status: new FormControl(data.status, [Validators.required, ]),
+          startDate: new FormControl(data.startDate!=null?data.startDate:"", ),
+          endDate: new FormControl(data.endDate!=null?data.endDate:""),
+          // @ts-ignore
+        }, {validators: [this.customCheckMinValueInput(), this.checkDateInRange()]})
+
+      }, error => console.log(error));
     }
-    this.handleListBooks();
+    // else{
+
+    // }
+
   }
 
   customCheckMinValueInput() {

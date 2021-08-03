@@ -12,7 +12,10 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import {MatButtonModule} from '@angular/material/button';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {MatCardModule} from '@angular/material/card';
+import {
+  MatCardImage,
+  MatCardModule
+} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatStepperModule} from '@angular/material/stepper';
@@ -75,12 +78,10 @@ import {MyChartModule} from "../shared/interfaces/my-p-chart";
     MatDatepickerModule,
     MatDialogModule,
     MatNativeDateModule,
-    MatDividerModule,
     MatExpansionModule,
     MatOptionModule,
     MatDialogModule,
     MatGridListModule,
-    MatIconModule,
     MatInputModule,
     MatListModule,
     MatMenuModule,
@@ -94,7 +95,6 @@ import {MyChartModule} from "../shared/interfaces/my-p-chart";
     MatSelectModule,
     MatSidenavModule,
     MatSliderModule,
-    MatCardModule,
     MatDialogModule,
     MyChartModule,
     MatFormFieldModule,
@@ -105,6 +105,7 @@ import {MyChartModule} from "../shared/interfaces/my-p-chart";
     MatChipsModule,
     MatIconModule,
     MatListModule,
+    MatDividerModule,
     MatOptionModule,
     MatToolbarModule,
     MatButtonModule,
@@ -129,7 +130,7 @@ import {MyChartModule} from "../shared/interfaces/my-p-chart";
     MatAutocompleteModule,
     MatChipsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
   ]
 })
 export class MaterialModule {
