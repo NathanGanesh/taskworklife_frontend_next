@@ -8,7 +8,6 @@ import { NestedTreeComponent } from './nested-tree/nested-tree.component';
 import {MaterialModule} from "./material/material.module";
 import { NotFoundComponentComponent } from './not-found-component/not-found-component.component';
 import { HomeComponentComponent } from './home-component/home-component.component';
-import {SidenavModule} from "./sidenav/sidenav.module";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {
   FormsModule,
@@ -18,8 +17,7 @@ import {BookService} from "./shared/services/book.service";
 
 import {HttpClientModule} from "@angular/common/http";
 import { ChartsModule } from 'ng2-charts';
-import {MatIconModule} from "@angular/material/icon";
-import {MyChartModule} from "./shared/interfaces/my-p-chart";
+
 import {
   DateAdapter,
   MAT_DATE_LOCALE,
@@ -50,7 +48,6 @@ import { SearchFilterPipe } from './shared/helpers/search-filter.pipe';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    SidenavModule,
 
     ButtonModule,
     FlexLayoutModule,
