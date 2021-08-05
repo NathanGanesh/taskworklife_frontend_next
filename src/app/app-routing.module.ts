@@ -7,7 +7,11 @@ import {HomeComponentComponent} from "./home-component/home-component.component"
 const routes: Routes = [{
   path: 'book',
   loadChildren: () => import('./book/book.module').then(m => m.BookModule)
-}, {path: "**", component: NotFoundComponentComponent}];
+},{
+  path: 'journal',
+  loadChildren: () => import('./journal/journal.module').then(m => m.JournalModule)
+},
+  {path: "**", component: NotFoundComponentComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
