@@ -1,0 +1,27 @@
+<mat-toolbar class="flexSpaceBetween" color="primary">
+  <mat-form-field class="example-full-width" floatLabel="never">
+    <input matInput placeholder="Search">
+  </mat-form-field>
+<div>
+    <button  class="btn-classic" mat-flat-button (click)="onSwitchComponent($event)" value="{{buttonsItem.value}}" *ngFor="let buttonsItem of  buttonsItems">
+      <mat-icon inline=true>{{buttonsItem.iconName}}</mat-icon>
+      {{buttonsItem.viewValue}}
+    </button>
+</div>
+</mat-toolbar>
+<div class="flex-row">
+
+  <mat-list role="list" class="side-nav">
+    <mat-list-item role="listitem">Item 1</mat-list-item>
+    <mat-list-item role="listitem">Item 2</mat-list-item>
+    <mat-list-item role="listitem">Item 3</mat-list-item>
+  </mat-list>
+
+  <div [ngSwitch]="selectedType" class="form">
+    <ng-container *ngSwitchCase="'MORNING'"> <app-morning></app-morning></ng-container>
+    <ng-container *ngSwitchCase="'NIGHT'"><app-night></app-night></ng-container>
+    <ng-container *ngSwitchCase="'WEEK'"><app-weekly></app-weekly></ng-container>
+    <ng-container *ngSwitchCase="'JOURNAL'"><app-normal></app-normal></ng-container>
+  </div>
+
+</div>

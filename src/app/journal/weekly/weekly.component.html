@@ -1,0 +1,48 @@
+<h1>Weekly Journal</h1>
+<h2>Date {{currentDate}}</h2>
+<form class="example-container" #morningForm="ngForm" (ngSubmit)="onSubmitWeekly($event)">
+
+  <mat-form-field class="form-element">
+    <mat-label>What progress did we make towards our goals this week? what did you learn?</mat-label>
+    <textarea matInput name="majorTasks" cols="35" rows="8"  [(ngModel)]="goalsThisWeek" required></textarea>
+  </mat-form-field>
+
+
+  <mat-form-field class="form-element">
+    <mat-label>What was the success this week?</mat-label>
+    <textarea matInput name="coreGoals" cols="35" rows="8"  [(ngModel)]="success" required></textarea>
+  </mat-form-field>
+
+
+  <mat-form-field class="form-element">
+    <mat-label>If you could do this week again, what would you do differently?</mat-label>
+    <textarea matInput name="schedule" cols="35" rows="8"  [(ngModel)]="weekDifferent" required></textarea>
+  </mat-form-field>
+
+  <mat-form-field class="form-element">
+    <mat-label>What was frustrating this week and how will you manage that next time?</mat-label>
+    <textarea matInput name="distractions" cols="35" rows="8"  [(ngModel)]="frustrating" required></textarea>
+  </mat-form-field>
+
+
+
+  <mat-form-field class="form-element">
+    <mat-label>What was a waste of your time this week?</mat-label>
+    <textarea matInput name="avoid" cols="35" rows="8"  [(ngModel)]="wasteTime" required></textarea>
+  </mat-form-field>
+
+
+  <mat-form-field class="form-element">
+    <mat-label>What area of your behaviour will you focus on next week? How will you do that?
+    </mat-label>
+    <textarea matInput name="avoid" cols="35" rows="8"  [(ngModel)]="planNextWeek" required></textarea>
+  </mat-form-field>
+
+  <mat-form-field class="form-element">
+    <mat-label>  What is your number one priority for next week?
+    </mat-label>
+    <textarea matInput name="avoid" cols="35" rows="8"  [(ngModel)]="planTomorrow" required></textarea>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" [disabled]="!morningForm.valid" type="submit"> Send </button>
+</form>

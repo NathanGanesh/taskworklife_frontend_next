@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiBaseUrlBook: "http://localhost:8085/api/v1/book"
+  apiBaseUrlBook: "http://localhost:8085/api/v1/book",
+  ApiBaseUrlTask: "http://localhost:8085/api/v1/folder"
 };
 
 /*

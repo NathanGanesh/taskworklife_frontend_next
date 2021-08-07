@@ -1,0 +1,7 @@
+<h1>
+
+<input matInput placeholder="title" type="text"  required [(ngModel)]="title">
+</h1>
+<h2>Date {{currentDate}}</h2>
+<angular-editor [placeholder]="'Enter text here...'"  [config]="config" [(ngModel)]="htmlContent"></angular-editor>
+<button style="margin-top: 20px" mat-raised-button color="primary" type="submit"> Send </button>

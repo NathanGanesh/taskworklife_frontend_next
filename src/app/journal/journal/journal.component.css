@@ -1,0 +1,24 @@
+.flexSpaceBetween {
+  justify-content: space-between;
+}
+.btn-classic{
+  margin: 0 10px;
+}
+
+.side-nav{
+  border: 2px;
+  border-style: solid;
+  color: black;
+  background: beige;
+  flex: 0 0 20em;
+  height: 100%;
+}
+
+.flex-row{
+  display: flex;
+  height: 100vh;
+}
+
+.form{
+  padding: 20px;
+}

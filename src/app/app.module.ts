@@ -48,15 +48,12 @@ import { SearchFilterPipe } from './shared/helpers/search-filter.pipe';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-
     ButtonModule,
     FlexLayoutModule,
     FormsModule,
     HttpClientModule,
     ChartsModule,
-
     ReactiveFormsModule,
-
   ],
   providers: [BookService, {
     provide: MAT_DATE_LOCALE,

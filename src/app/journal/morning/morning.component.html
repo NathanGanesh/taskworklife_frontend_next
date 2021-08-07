@@ -1,0 +1,34 @@
+<h1>Good Morning</h1>
+<h2>Date {{currentDate}}</h2>
+<form class="example-container" #morningForm="ngForm" (ngSubmit)="onSubmitMorning($event)">
+
+  <mat-form-field class="form-element">
+    <mat-label>What are your major tasks of today?</mat-label>
+    <textarea matInput name="majorTasks" cols="35" rows="8"  [(ngModel)]="majorTasks" required></textarea>
+  </mat-form-field>
+
+
+  <mat-form-field class="form-element">
+    <mat-label>What are your core goals(gym, eating, working, relationships)?</mat-label>
+    <textarea matInput name="coreGoals" cols="35" rows="8"  [(ngModel)]="coreGoals" required></textarea>
+  </mat-form-field>
+
+
+    <a class="link"  target="_blank" href="https://i.imgur.com/ukwpSWi.png">link example</a>
+  <mat-form-field class="form-element">
+    <mat-label>What is your schedule for today? google calendar </mat-label>
+    <textarea matInput name="schedule" cols="35" rows="8"  [(ngModel)]="scheduleToday" required></textarea>
+  </mat-form-field>
+
+  <mat-form-field class="form-element">
+    <mat-label>What distractions and time waster do i know get in the way of my achieving with my life?</mat-label>
+    <textarea matInput name="distractions" cols="35" rows="8"  [(ngModel)]="distractionsTimeWaster" required></textarea>
+  </mat-form-field>
+
+  <mat-form-field class="form-element">
+    <mat-label>What is one thing to avoid today?</mat-label>
+    <textarea matInput name="avoid" cols="35" rows="8"  [(ngModel)]="toAvoid" required></textarea>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" [disabled]="!morningForm.valid" type="submit"> Send </button>
+</form>

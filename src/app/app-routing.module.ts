@@ -11,6 +11,13 @@ const routes: Routes = [{
   path: 'journal',
   loadChildren: () => import('./journal/journal.module').then(m => m.JournalModule)
 },
+  {
+    path:'task',
+    loadChildren: () => import("./task/task.module").then(m => m.TaskModule)
+  },
+  {path:'goal', loadChildren: () => import("./okr/okr.module").then(m => m.OkrModule)},
+  {path:'note', loadChildren: () => import("./note/note.module").then(m => m.NoteModule)},
+  {path:'habit', loadChildren: () => import("./habit/habit.module").then(m => m.HabitModule)},
   {path: "**", component: NotFoundComponentComponent}];
 
 @NgModule({
