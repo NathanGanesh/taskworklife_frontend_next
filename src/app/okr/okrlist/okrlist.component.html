@@ -1,1 +1,40 @@
-<p>okrlist works!</p>
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+  <!-- This is the tree node template for leaf nodes -->
+  <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding class="tree">
+    <!-- use a disabled button to provide padding for tree leaf -->
+<!--    <div>-->
+<!--    <button mat-icon-button disabled></button>-->
+<!--      <p>{{node.name}}</p>-->
+<!--    </div>-->
+
+    <div>
+      <tr>The objective is to make 100%</tr>
+    </div>
+      <tr class="cell-values-th">
+        <th scope="col">Player</th>
+        <th scope="col">Gloobles</th>
+        <th scope="col">Za'taak</th>
+      </tr>
+  </mat-tree-node>
+  <!-- This is the tree node template for expandable nodes -->
+  <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding class="tree">
+
+    <div class="">
+    <button mat-icon-button matTreeNodeToggle
+            [attr.aria-label]="'Toggle ' + node.name">
+      <mat-icon class="mat-icon-rtl-mirror">
+        {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+      </mat-icon>
+      Lose 5kg
+    </button>
+
+
+    </div>
+      <tr class="table-headers">
+        <th scope="col">status</th>
+        <th scope="col">priority</th>
+        <th scope="col">Za'taak</th>
+      </tr>
+
+  </mat-tree-node>
+</mat-tree>

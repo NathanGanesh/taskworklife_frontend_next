@@ -5,7 +5,9 @@
 export const environment = {
   production: false,
   apiBaseUrlBook: "http://localhost:8085/api/v1/book",
-  ApiBaseUrlTask: "http://localhost:8085/api/v1/folder"
+  apiBaseUrlTask: "http://localhost:8085/api/v1/folder",
+  apiBaseUrlJournal: "http://localhost:8085/api/v1/journal",
+  apiBaseUrlOKR:"http://localhost:8085/api/v1/okr"
 };
 
 /*

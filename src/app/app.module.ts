@@ -34,6 +34,7 @@ import {MatChipsModule} from "@angular/material/chips";
 import { AutocompleteInputComponent } from './autocomplete-input/autocomplete-input.component';
 import {CustomDateAdapter} from "./shared/helpers/custom-date-adapter";
 import { SearchFilterPipe } from './shared/helpers/search-filter.pipe';
+import {JournalService} from "./shared/services/journal.service";
 
 @NgModule({
   declarations: [
@@ -55,7 +56,7 @@ import { SearchFilterPipe } from './shared/helpers/search-filter.pipe';
     ChartsModule,
     ReactiveFormsModule,
   ],
-  providers: [BookService, {
+  providers: [BookService, JournalService, {
     provide: MAT_DATE_LOCALE,
     useValue: 'en-GB'
   },

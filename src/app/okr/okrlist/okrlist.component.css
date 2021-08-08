@@ -1,0 +1,27 @@
+.tr-tag{
+  display: flex;
+
+}
+.tree{
+  display: flex;
+  align-content: flex-end;
+  justify-content: space-between;
+}
+
+.table-headers th{
+  padding: 10px 32px;
+}
+.cell-values{
+  align-content: flex-end;
+  justify-content: flex-end;
+
+  padding:0 30px;
+}
+.cell-values{
+  display: flex;
+  justify-content: space-between;
+  padding:10px;
+}
+.cell-values-th th{
+  padding: 20px 30px;
+}

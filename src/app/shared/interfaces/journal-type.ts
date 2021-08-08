@@ -1,0 +1,3 @@
+export enum JournalType {
+  MORNING,WEEKLY,JOURNAL,MONTHLY,REVIEW,NIGHT
+}

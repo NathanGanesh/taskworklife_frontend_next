@@ -1,68 +1,18 @@
-<!--<mat-toolbar color="primary" class="example-toolbar">-->
-<!--  <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>-->
-<!--  <h1 class="example-app-name">Responsive App</h1>-->
-<!--</mat-toolbar>-->
 
 <mat-sidenav-container fullscreen>
   <mat-sidenav #sidenav  mode="side" [ngStyle]="{ 'width.em': sidenavWidth }" opened="true" (mouseenter)="increase()"
                (mouseleave)="decrease()">
     <div class="logomain">Logo Part</div>
     <mat-nav-list>
-      <mat-list-item routerLink="task" routerLinkActive="active" >
-        <mat-icon mat-list-icon>inbox</mat-icon>
-<!--        <mat-icon mat-list-icon>person</mat-icon>-->
-        <div fxFlex="10"></div>
-        <div *ngIf="sidenavWidth > 6" class="sidenav-item">
-          <h5 class="lead">Task</h5>
-        </div>
-      </mat-list-item>
 
-      <mat-list-item routerLink="task" routerLinkActive="active">
-        <mat-icon mat-list-icon>settings</mat-icon>
-        <div fxFlex="10"></div>
-        <div *ngIf="sidenavWidth > 6" class="sidenav-item">
-          <h5 class="lead">Settings</h5>
-        </div>
-      </mat-list-item>
-
-      <mat-list-item routerLink="3" routerLinkActive="active">
-        <mat-icon mat-list-icon>local_phone</mat-icon>
-        <div fxFlex="10"></div>
-        <div *ngIf="sidenavWidth > 6" class="sidenav-item">
-          <h5 class="lead">Contact</h5>
-        </div>
-      </mat-list-item>
-
-      <mat-list-item routerLink="book" routerLinkActive="active">
-        <mat-icon mat-list-icon>book</mat-icon>
-        <div fxFlex="10"></div>
-        <div *ngIf="sidenavWidth > 6" class="sidenav-item">
-          <h5 class="lead">Book</h5>
-        </div>
-      </mat-list-item>
-
-      <mat-list-item routerLink="journal" routerLinkActive="active">
-        <mat-icon mat-list-icon>description</mat-icon>
-        <div fxFlex="10"></div>
-        <div *ngIf="sidenavWidth > 6" class="sidenav-item">
-          <h5 class="lead">Journal</h5>
-        </div>
-      </mat-list-item>
-
-      <mat-list-item routerLink="habit" routerLinkActive="active">
-        <mat-icon mat-list-icon>loop</mat-icon>
-        <div fxFlex="10"></div>
-        <div *ngIf="sidenavWidth > 6" class="sidenav-item">
-          <h5 class="lead">habit</h5>
-        </div>
-      </mat-list-item>
-      <mat-list-item routerLink="habit" routerLinkActive="active">
-        <mat-icon mat-list-icon>loop</mat-icon>
-        <div fxFlex="10"></div>
-        <div *ngIf="sidenavWidth > 6" class="sidenav-item">
-          <h5 class="lead">goal</h5>
-        </div>
-      </mat-list-item>
+              <mat-list-item  *ngFor="let item of iconItems" routerLink={{item.routingLink}} routerLinkActive="active" >
+                <mat-icon mat-list-icon>{{item.iconName}}</mat-icon>
+        <!--        <mat-icon mat-list-icon>person</mat-icon>-->
+                <div fxFlex="10"></div>
+                <div *ngIf="sidenavWidth > 6" class="sidenav-item">
+                  <h5 class="lead">{{item.title}}</h5>
+                </div>
+              </mat-list-item>
     </mat-nav-list>
 
   </mat-sidenav>
