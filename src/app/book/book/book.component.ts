@@ -14,31 +14,17 @@ import {AddBook} from "../../shared/interfaces/add-book";
   styleUrls: ['./book.component.css']
 })
 export class BookComponent implements OnInit {
-
   books$: Book[] = [];
-  searchMode: boolean = false;
-
   searchKeyword:string = "";
   constructor(private bookService:BookService) {
 
   }
 
-  loadBooks(){
-    if (this.searchMode){
-
-    }else{
-      this.handleListBooks()
-    }
-  }
-  handleSearchBooks(){
-
-  }
 
   handleListBooks(){
     this.bookService.getAllBooks().subscribe(
       (response: Book[]) => {
         this.books$ = response;
-
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -47,17 +33,17 @@ export class BookComponent implements OnInit {
   }
 
   deleteBook(id:number){
-    return this.bookService.deleteBook(id).pipe(tap(() => this.loadBooks())).subscribe();
+    return this.bookService.deleteBook(id).pipe(tap(() => this.handleListBooks())).subscribe();
   }
 
 
   addNoteToBook(addNote:AddNoteResp){
-    return this.bookService.addNoteToBook(addNote.id, addNote.pageNumber).pipe(tap(() =>this.loadBooks())).subscribe()
+    return this.bookService.addNoteToBook(addNote.id, addNote.pageNumber).pipe(tap(() =>this.handleListBooks())).subscribe()
   }
 
 
   ngOnInit(): void {
-    this.loadBooks();
+    this.handleListBooks()
   }
 
 }

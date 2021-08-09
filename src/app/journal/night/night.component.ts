@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {interval} from "rxjs";
+import {JournalListItem} from "../../shared/interfaces/journal-list-item";
 
 @Component({
   selector: 'app-night',
@@ -7,8 +8,11 @@ import {interval} from "rxjs";
   styleUrls: ['./night.component.css']
 })
 export class NightComponent implements OnInit {
-  currentDate:string = new Date().toLocaleString('en-US', { timeZone: 'Europe/Amsterdam' });
+  @Input()
+    //@ts-ignore
+  selectedItem: JournalListItem
 
+  currentDate:string = new Date().toLocaleString('en-US', { timeZone: 'Europe/Amsterdam' });
   doneToday: string = " - eating";
   coreGoals: string = " gym ";
   distractions: string = "code - 12:00 math - 6:00";

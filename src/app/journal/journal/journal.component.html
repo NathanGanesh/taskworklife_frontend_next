@@ -2,26 +2,73 @@
   <mat-form-field class="example-full-width" floatLabel="never">
     <input matInput placeholder="Search">
   </mat-form-field>
-<div>
-    <button  class="btn-classic" mat-flat-button (click)="onSwitchComponent($event)" value="{{buttonsItem.value}}" *ngFor="let buttonsItem of  buttonsItems">
+  <div>
+    <button class="btn-classic" mat-flat-button (click)="onSwitchComponent($event)" value="{{buttonsItem.value}}"
+            *ngFor="let buttonsItem of  buttonsItems">
       <mat-icon inline=true>{{buttonsItem.iconName}}</mat-icon>
       {{buttonsItem.viewValue}}
     </button>
-</div>
+  </div>
 </mat-toolbar>
 <div class="flex-row">
-
   <mat-list role="list" class="side-nav">
-    <mat-list-item role="listitem">Item 1</mat-list-item>
-    <mat-list-item role="listitem">Item 2</mat-list-item>
-    <mat-list-item role="listitem">Item 3</mat-list-item>
+    <mat-list-item *ngFor="let item of journals$" class="journal-item" (click)="onJournalClick(item)" >
+      <div>
+        <div>
+          <p>{{item.title}}</p>
+        </div>
+        <div class="journal-item-description">
+          <p>{{item.date | date}}</p>
+          <div ngSwitch="{{item.journalType}}" class="journal-icon">
+            <ng-container *ngSwitchCase="'NIGHT'">
+              <mat-icon inline=true>dark_mode</mat-icon>
+              Night
+            </ng-container>
+            <ng-container *ngSwitchCase="'MORNING'">
+              <mat-icon inline=true>list_alt</mat-icon>
+              Morning
+            </ng-container>
+            <ng-container *ngSwitchCase="'WEEKLY'">
+              <mat-icon inline=true>calendar_view_week</mat-icon>
+              Weekly
+            </ng-container>
+            <ng-container *ngSwitchCase="'JOURNAL'">
+              <mat-icon inline=true>calendar_view_day</mat-icon>
+              Journal
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    <mat-divider></mat-divider>
+    </mat-list-item>
   </mat-list>
 
   <div [ngSwitch]="selectedType" class="form">
-    <ng-container *ngSwitchCase="'MORNING'"> <app-morning></app-morning></ng-container>
-    <ng-container *ngSwitchCase="'NIGHT'"><app-night></app-night></ng-container>
-    <ng-container *ngSwitchCase="'WEEK'"><app-weekly></app-weekly></ng-container>
-    <ng-container *ngSwitchCase="'JOURNAL'"><app-normal></app-normal></ng-container>
+    <ng-container *ngSwitchCase="'MORNING'">
+      <app-morning ></app-morning>
+    </ng-container>
+    <ng-container *ngSwitchCase="'NIGHT'">
+      <app-night ></app-night>
+    </ng-container>
+    <ng-container *ngSwitchCase="'WEEKLY'">
+      <app-weekly ></app-weekly>
+    </ng-container>
+    <ng-container *ngSwitchCase="'JOURNAL'">
+      <app-normal ></app-normal>
+    </ng-container>
   </div>
-
+  <div [ngSwitch]="selectedEditType" class="form">
+    <ng-container *ngSwitchCase="'MORNING'">
+      <app-morning [selectedItem]="selectedItem"></app-morning>
+    </ng-container>
+    <ng-container *ngSwitchCase="'NIGHT'">
+      <app-night [selectedItem]="selectedItem"></app-night>
+    </ng-container>
+    <ng-container *ngSwitchCase="'WEEKLY'">
+      <app-weekly [selectedItem]="selectedItem"></app-weekly>
+    </ng-container>
+    <ng-container *ngSwitchCase="'JOURNAL'">
+      <app-normal [selectedItem]="selectedItem"></app-normal>
+    </ng-container>
+  </div>
 </div>

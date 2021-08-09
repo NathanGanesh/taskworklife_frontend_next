@@ -2,17 +2,18 @@ import {Journal} from "./journal";
 import {JournalType} from "./journal-type";
 
 export class JournalWeekly extends Journal{
-  progressToday
-  successThisWeek
-  doThingsDifferent
-  frustrating
-  wasteTime
-  areaFocus
-  priority
+  progressThisWeek:string;
+  successThisWeek:string;
+  doThingsDifferent:string;
+  frustrating:string;
+  wasteTime:string;
+  areaFocus:string;
+  priority:string;
 
-  constructor(id: number, date: Date, journalType: JournalType, progressToday, successThisWeek, doThingsDifferent, frustrating, wasteTime, areaFocus, priority) {
-    super(id, date, journalType);
-    this.progressToday = progressToday;
+
+  constructor(id: number, date: Date, journalType: JournalType, title: string, progressToday: string, successThisWeek: string, doThingsDifferent: string, frustrating: string, wasteTime: string, areaFocus: string, priority: string) {
+    super(id, date, journalType, title);
+    this.progressThisWeek = progressToday;
     this.successThisWeek = successThisWeek;
     this.doThingsDifferent = doThingsDifferent;
     this.frustrating = frustrating;

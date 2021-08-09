@@ -9,8 +9,9 @@ export class JournalNight extends Journal{
   avoid:string
   planTomorrow:string
 
-  constructor(id: number, date: Date, journalType: JournalType, thingsDone: string, coreGoals: string, distractions: string, habit: string, avoid: string, planTomorrow: string) {
-    super(id, date, journalType);
+
+  constructor(id: number, date: Date, journalType: JournalType, title: string, thingsDone: string, coreGoals: string, distractions: string, habit: string, avoid: string, planTomorrow: string) {
+    super(id, date, journalType, title);
     this.thingsDone = thingsDone;
     this.coreGoals = coreGoals;
     this.distractions = distractions;

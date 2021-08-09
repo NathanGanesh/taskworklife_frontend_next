@@ -3,6 +3,8 @@ import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Book} from "../interfaces/book";
+import {Journal} from "../interfaces/journal";
+import {JournalListItem} from "../interfaces/journal-list-item";
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +16,12 @@ export class JournalService {
 
   }
 
-  getAllBooks(): Observable<Book[]>{
+  getAllJournals(): Observable<JournalListItem[]>{
     console.log("getting all books")
-    return  this.http.get<Book[]>(`${this.apiServerUrl}/all`)
+    return  this.http.get<JournalListItem[]>(`${this.apiServerUrl}/all`)
+  }
+
+  submitMorning(e: any) {
+    
   }
 }

@@ -1,11 +1,12 @@
 .flexSpaceBetween {
   justify-content: space-between;
 }
-.btn-classic{
+
+.btn-classic {
   margin: 0 10px;
 }
 
-.side-nav{
+.side-nav {
   border: 2px;
   border-style: solid;
   color: black;
@@ -14,11 +15,49 @@
   height: 100%;
 }
 
-.flex-row{
+.flex-row {
   display: flex;
   height: 100vh;
 }
 
-.form{
+.form {
   padding: 20px;
 }
+p{
+  display: block;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+.journal-item {
+  display: flex;
+  flex-direction: column;
+  /*margin:6px 12px;*/
+  margin: 6px 0px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.journal-item-description {
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+}
+.journal-item-description p:last-child {
+  margin-left: 14px;
+}
+
+p{
+  margin:  0px;
+}
+.mat-list-item{
+  padding: 0px;
+}
+.journal-icon{
+  padding: 0 6px;
+}
+.mat-list-base .mat-list-item .mat-list-item-content, .mat-list-base .mat-list-option .mat-list-item-content{
+  padding: 0px;
+}
+
