@@ -1,6 +1,6 @@
 <h1>Good Night</h1>
 <h2>Date {{currentDate}}</h2>
-<form class="example-container" #morningForm="ngForm" (ngSubmit)="onSubmitNight($event)">
+<form class="example-container" #nightForm="ngForm" (ngSubmit)="onSubmitNight($event)">
 
   <mat-form-field class="form-element">
     <mat-label>What did i get done today?</mat-label>
@@ -38,5 +38,5 @@
   </mat-form-field>
 
 
-  <button mat-raised-button color="primary" [disabled]="!morningForm.valid" type="submit"> Send </button>
+  <button mat-raised-button color="primary" [disabled]="!nightForm.valid" type="submit" class="send-button"> Send </button>
 </form>
