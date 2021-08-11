@@ -42,10 +42,7 @@ export class JournalComponent implements OnInit {
 
   handleJournalList() {
     this.journalService.getAllJournals().subscribe((resp: JournalListItem[]) => {
-        console.log(resp)
         this.journals$ = resp;
-        console.log(this.journals$)
-        // console.log(this.journals$)
       },
       (error: HttpErrorResponse) => {
         alert(error.message)

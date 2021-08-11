@@ -55,6 +55,7 @@ import {SearchFilterPipe} from "../shared/helpers/search-filter.pipe";
 import {MaterialModule} from "../material/material.module";
 
 
+
 @NgModule({
   declarations: [
     BookListComponent,
@@ -65,6 +66,7 @@ import {MaterialModule} from "../material/material.module";
     DialogOverviewExampleDialog,
     SearchFilterPipe,
     InputChipAutoCompleteComponent,
+
   ],
   imports: [
     CommonModule,

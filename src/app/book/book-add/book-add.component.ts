@@ -26,6 +26,7 @@ import {AddBook} from "../../shared/interfaces/add-book";
 import {SelectedItem} from "../../shared/interfaces/selected-item";
 import {InputOneBiggerThenTwo} from "../../shared/helpers/input-value-bigger";
 import {CustomDateAdapter} from "../../shared/helpers/custom-date-adapter";
+import {BookNote} from "../../shared/interfaces/book-note";
 
 @Component({
   selector: 'app-book-add',
@@ -33,7 +34,7 @@ import {CustomDateAdapter} from "../../shared/helpers/custom-date-adapter";
   styleUrls: ['./book-add.component.css']
 })
 export class BookAddComponent implements OnInit {
-
+  displayedColumns: string[] = ['pageNumber'];
   allCategories: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry', 'aap'];
   selectedCategories: string[] = [];
   inputName = "Select category"
@@ -46,6 +47,7 @@ export class BookAddComponent implements OnInit {
   // @ts-ignore
   selectedFile: any = null;
   inputLabel: string = "Categories";
+  bookNoteArrayList:number[] = []
 
   selectedItems: SelectedItem[] = [
     {value: "READING", viewValue: 'Currently reading'},
@@ -63,16 +65,7 @@ export class BookAddComponent implements OnInit {
 
   }
 
-  handleListBooks() {
-    this.bookService.getAllBooks().subscribe(
-      (response: Book[]) => {
-        this.books$ = response;
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-  }
+
 
 
 
@@ -91,6 +84,7 @@ export class BookAddComponent implements OnInit {
     if (this.route.snapshot.params['id'] != null) {
       this.id = this.route.snapshot.params['id'];
       this.bookService.getBookById(this.id).subscribe(data => {
+        console.log(data)
         this.book = data;
         this.selectedCategories = data.categories;
         // let currentPage = data.bookNoteArrayList.length!==0

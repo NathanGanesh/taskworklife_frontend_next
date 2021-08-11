@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {MatTreeFlatDataSource, MatTreeFlattener} from "@angular/material/tree";
 import {FlatTreeControl} from "@angular/cdk/tree";
+import {OkrItem} from "../../shared/interfaces/okr/okr-item";
 interface FoodNode {
   name: string;
   children?: FoodNode[];
@@ -36,6 +37,8 @@ interface ExampleFlatNode {
   styleUrls: ['./okrlist.component.css']
 })
 export class OkrlistComponent implements OnInit {
+  @Input()
+  okrItems:OkrItem[] = []
   displayedColumns: string[] = ["position", "name", "weight", "symbol"];
   private _transformer = (node: FoodNode, level: number) => {
     return {
