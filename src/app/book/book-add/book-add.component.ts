@@ -34,13 +34,11 @@ import {BookNote} from "../../shared/interfaces/book-note";
   styleUrls: ['./book-add.component.css']
 })
 export class BookAddComponent implements OnInit {
-  displayedColumns: string[] = ['pageNumber'];
-  allCategories: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry', 'aap'];
+  allCategories: string[] = [];
   selectedCategories: string[] = [];
   inputName = "Select category"
   // @ts-ignore
   bookForm: FormGroup;
-  books$: Book[] = [];
   id: number = -1;
   // @ts-ignore
   book: Book;
@@ -64,9 +62,6 @@ export class BookAddComponent implements OnInit {
   constructor(private route: ActivatedRoute, private bookService: BookService) {
 
   }
-
-
-
 
 
   ngOnInit(): void {

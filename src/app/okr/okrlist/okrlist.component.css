@@ -1,35 +1,61 @@
-.tr-tag{
+.okr-objective{
   display: flex;
-
-}
-.tree{
-  display: flex;
-  align-content: flex-end;
+  padding-right: 20px;
+  width: 100%;
   justify-content: space-between;
-  margin-bottom: 20px ;
 }
 
-.table-headers th{
-  padding: 10px 32px;
+.okr-objective div{
+  font-size: 16px;
+  margin-right: 38px;
 }
-.cell-values{
-  align-content: flex-end;
-  justify-content: flex-end;
 
-  padding:0 30px;
-}
-.cell-values{
+.okr-table{
   display: flex;
-  justify-content: space-between;
-  padding:10px;
+  font-size: 16px;
 }
-.cell-values-th th{
-  padding: 20px 30px;
+.okr-table p{
+  margin-left: 25px;
+  padding: 0 27px;
 }
 
-.button-toggle{
-  font-size: 22px;
+.okr-headers{
+  display: flex;
+  padding-left: 20px;
+  text-align: center;
+  align-items: center;
 }
-.button-ok{
-  font-size: 22px;
+.mat-title-header{
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+.okr-headers p{
+  font-size: 16px;
+  padding: 0 57px;
+}
+
+.okr-table-status{
+  margin-left: 5px;
+  text-align: start;
+}
+p{
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+.timeline{
+  padding-left: 0px;
+}
+.dog-shit{
+  margin-right: -30px;
+}
+
+.okr-objective-value{
+  padding-right: 32px;
+}
+
+.mat-accordion .mat-expansion-panel{
+  margin-bottom: 10px;
 }

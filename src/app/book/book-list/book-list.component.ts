@@ -11,8 +11,6 @@ import {MatDialog} from "@angular/material/dialog";
 import {DialogOverviewExampleDialog} from "../../dialog-overview/dialog-overview.component";
 import {AddNoteResp} from "../../shared/interfaces/add-note-resp";
 import {BookService} from "../../shared/services/book.service";
-import {tap} from "rxjs/operators";
-import {AddBook} from "../../shared/interfaces/add-book";
 
 
 @Component({

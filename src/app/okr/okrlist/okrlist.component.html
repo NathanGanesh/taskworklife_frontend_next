@@ -1,45 +1,78 @@
-<mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-  <!-- This is the tree node template for leaf nodes -->
-  <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding class="tree">
-    <!-- use a disabled button to provide padding for tree leaf -->
-    <!--    <div>-->
-    <!--    <button mat-icon-button disabled></button>-->
-    <!--      <p>{{node.name}}</p>-->
-    <!--    </div>-->
+<mat-accordion multi="true" [togglePosition]="'before'" class="mat-acord">
+  <mat-expansion-panel *ngFor="let okrItem of okrItems; let i = index" (opened)="setOpened(i)"
+                       (closed)="setClosed(i)">
+    <mat-expansion-panel-header>
 
-    <div>
-      <h3>
-        The objective is to make 100%
-      </h3>
-    </div>
-    <tr class="cell-values-th">
-      <th scope="col">Priority</th>
-      <th scope="col">Status</th>
-      <th scope="col">Timeline</th>
-    </tr>
-  </mat-tree-node>
-  <mat-divider></mat-divider>
-  <!-- This is the tree node template for expandable nodes -->
-  <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding class="tree">
+      <mat-panel-title class="mat-title-header">
+
+        {{ okrItem.okrTitle }}
+
+      </mat-panel-title>
+      <div class="okr-headers">
+        <div>
+          <p>Priority</p>
+          <p>{{okrItem.priority}}</p>
+        </div>
+        <div class="okr-table-status">
+          <p>Status</p>
+          <p>{{okrItem.okrStatus}}</p>
+        </div>
+        <div>
+          <p>Timeline</p>
+          <p class="timeline">
+            {{formatToDate(okrItem.startDateOkr, okrItem.endDateOkr)}}
+          </p>
+        </div>
+        <button mat-icon-button class="buttonAdd" (click)="addNewOkrObjective(okrItem)">
+          <mat-icon>add</mat-icon>
+        </button>
+        <button mat-icon-button [matMenuTriggerFor]="menu"
+                #menuTrigger="matMenuTrigger">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" [overlapTrigger]="false">
+    <span>
+      <button mat-menu-item   (click)="deleteOkrEmitter(okrItem.id); $event.stopImmediatePropagation()">
+        <mat-icon>delete</mat-icon>
+        <span>Delete</span>
+  </button>
+  <button mat-menu-item
+  >
+        <mat-icon>edit</mat-icon>
+        <span>Edit</span>
+      </button>
+  </span>
+        </mat-menu>
+      </div>
 
 
-    <button mat-icon-button matTreeNodeToggle class="button-ok"
-            [attr.aria-label]="'Toggle ' + node.name">
-      <mat-icon class="mat-icon-rtl-mirror">
-        {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-      </mat-icon>
+    </mat-expansion-panel-header>
+    <mat-list *ngFor="let okrObjectiveItem of okrItem.okrObjectivesList; let i = index">
+      <mat-divider></mat-divider>
+      <div class="okr-objective">
+        <div>
+          {{okrObjectiveItem.name}}
+        </div>
+        <div class="okr-table">
+          <div class="okr-objective-value">
+            <p>
+              {{okrObjectiveItem.okrObjectiveStatus }}
+            </p>
+          </div>
+          <div class="dog-shit">
+            <p class="dog-shit">
+              {{okrObjectiveItem.priorityObjective }}
+            </p>
+          </div>
+          <div class="timeline">
+            <p class="timeline">
+              {{formatToDate(okrObjectiveItem.startDateObjective, okrObjectiveItem.endDateObjective)}}
+            </p>
+          </div>
+        </div>
+      </div>
 
-      Lose 5kg
-    </button>
-
-
-
-    <tr class="table-headers">
-      <th scope="col">status</th>
-      <th scope="col">priority</th>
-      <th scope="col">Za'taak</th>
-    </tr>
-
-  </mat-tree-node>
-</mat-tree>
-
+      <mat-divider></mat-divider>
+    </mat-list>
+  </mat-expansion-panel>
+</mat-accordion>

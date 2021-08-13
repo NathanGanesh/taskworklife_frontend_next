@@ -7,6 +7,8 @@ import { OkrComponent } from './okr/okr.component';
 import {MaterialModule} from "../material/material.module";
 import { OkrcreateComponent } from './okrcreate/okrcreate.component';
 import { OkrtableComponent } from './okrtable/okrtable.component';
+import { OkrDialogAddComponent } from './okr-dialog-add/okr-dialog-add.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -14,12 +16,14 @@ import { OkrtableComponent } from './okrtable/okrtable.component';
     OkrlistComponent,
     OkrComponent,
     OkrcreateComponent,
-    OkrtableComponent
+    OkrtableComponent,
+    OkrDialogAddComponent
   ],
-  imports: [
-    CommonModule,
-    OkrRoutingModule,
-    MaterialModule
-  ]
+    imports: [
+        CommonModule,
+        OkrRoutingModule,
+        MaterialModule,
+        ReactiveFormsModule
+    ]
 })
 export class OkrModule { }
