@@ -26,7 +26,7 @@ export class HomeComponentComponent implements OnInit {
       title: "Habit", iconName: "loop", routingLink: "habit"
     },
     {
-      title: "Goal", iconName: "timeline", routingLink: "goal"
+      title: "OKR", iconName: "timeline", routingLink: "goal"
     },
     {title: "Note", iconName: "note", routingLink:"note"}
   ];

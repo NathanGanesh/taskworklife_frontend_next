@@ -1,4 +1,16 @@
-.flexSpaceBetween{
+.form {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+
+.container{
+  padding: 20px;
+}
+
+.data-picker2{
+  padding-left: 50px;
 }

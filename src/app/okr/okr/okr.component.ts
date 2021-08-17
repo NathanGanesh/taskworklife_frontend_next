@@ -36,7 +36,10 @@ export class OkrComponent implements OnInit {
   }
 
   deleteOkr($event:any){
-
     return this.OkrService.deleteOkr($event).pipe((tap(() => this.handleOkrList()))).subscribe();
   }
+
+
+
+
 }
