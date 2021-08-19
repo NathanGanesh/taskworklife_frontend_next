@@ -9,6 +9,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {Habit} from "../../shared/interfaces/habit";
 import {HeaderName} from "../../shared/interfaces/header-name";
 import {HabitEntry} from "../../shared/interfaces/habit-entry";
+import {tap} from "rxjs/operators";
 
 export interface MonthWithDays {
   monthName: string;
@@ -34,13 +35,10 @@ const data = [
   styleUrls: ['./habit-home.component.css']
 })
 export class HabitHomeComponent implements OnInit {
-  dataHabit: Habit[] = [];
   tryHabit2: any[] = []
 
   constructor(private habitService: HabitService) {
   }
-
-  dataSource = new MatTableDataSource<Item>(data);
 
 
 // @ts-ignore
@@ -61,8 +59,8 @@ export class HabitHomeComponent implements OnInit {
     {monthName: "November", amountOfDays: 30},
     {monthName: "December", amountOfDays: 31},
   ];
-  displayedColumns2: string[] = []
-  displayedColumns: string[] = ['journal', "weight_track", "wakatime", "no_fap", "book", "daily_goals"]
+
+  displayedColumns: string[] = ["date", 'journal', "weight_track", "wakatime", "no_fap", "book", "daily_goals", "habit_track"]
   pageNumber: any;
 
   goToPage() {
@@ -77,11 +75,10 @@ export class HabitHomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.handleHabits();
-    this.handleHeaderNames();
+
   }
 
   onSelectChange($event: MatSelectChange) {
-
     console.log($event.value)
   }
 
@@ -89,53 +86,48 @@ export class HabitHomeComponent implements OnInit {
   handleHabits() {
     this.habitService.getAllHabits().subscribe(
       (response: Habit[]) => {
-        this.dataHabit = response;
-        this.tryHabit2 = this.flattenArray(response)
-        // console.log(this.flattenArray(response));;
-        // console.log(this.dataHabit)
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-  }
-
-  handleHeaderNames() {
-    this.habitService.getAllHeaderNAmes().subscribe(
-      (response: HeaderName[]) => {
-        this.displayedColumns2.push("date")
-        this.displayedColumns2.push("Journal")
-        this.displayedColumns2.push("Wakatime")
-        // response.map((item) => {
-        //   this.displayedColumns2.push(item.headerName);
-        // })
-        // console.log(this.displayedColumns2)
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-  }
-
-  flattenArray(obj: any[]) {
-    let flattenedObject: any[] = [];
-// console.log(obj);
-    obj.forEach((item: any) => {
-        var obj: any = {"date": item.date};
-        item.habitEntryList.forEach((habitEntryItem: any) => {
-          var key = habitEntryItem.name;
-          obj[key] = habitEntryItem.checked
+        this.tryHabit2 = response;
+        console.log(this.tryHabit2)
+        let dailyItem = this.tryHabit2.filter((item) => {
+          if (item.date === new Date().toISOString().slice(0,10)){
+            return item;
+          }
         })
-        flattenedObject.push(obj)
+        console.log(dailyItem)
+        if (dailyItem.length <= 0) {
+          this.insertDailyItem()
+        }
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
       }
-    )
-    console.log(flattenedObject)
-    return flattenedObject;
+    );
   }
 
-  getObjectKey(item:any){
-    console.log(item)
+  private insertDailyItem() {
+    console.log("inserting dialy")
+    let item:Habit = {
+      date:new Date()
+    }
+    this.habitService.saveAndEditHabit(item).subscribe();
   }
 
+  testItem(item:Habit){
+    this.habitService.saveAndEditHabit(item).subscribe();
+  }
+
+  // flattenArray(obj: any[]) {
+  //   let flattenedObject: any[] = [];
+  //   obj.forEach((item: any) => {
+  //       let obj: any = {"date": item.date, "id":item.id};
+  //       item.habitEntryList.forEach((habitEntryItem: any) => {
+  //         let key = habitEntryItem.name;
+  //         obj[key] = habitEntryItem.checked
+  //       })
+  //       flattenedObject.push(obj)
+  //     }
+  //   )
+  //   return flattenedObject;
+  // }
 
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {Observable} from "rxjs";
 import {HeaderName} from "../interfaces/header-name";
@@ -22,4 +22,14 @@ export class HabitService {
     return this.http.get<HeaderName[]>(`${this.apiServerUrl}/headerNames`)
   }
 
+  // addNewHabit():Observable<>
+
+
+  saveAndEditHabit(item: Habit) {
+    let options = {
+      headers: new HttpHeaders().set('Content-Type', 'application/json')
+    };
+    console.log(item)
+    return this.http.post<Habit>(`${this.apiServerUrl}/save`, item, options)
+  }
 }
