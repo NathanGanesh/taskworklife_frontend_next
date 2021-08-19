@@ -1,0 +1,121 @@
+<mat-toolbar color="primary" class="flexSpaceBetween">
+  <h1 class="fill-remaining-space">Habit page</h1>
+  <div>
+    <mat-form-field>
+      <mat-select [(ngModel)]="dateMonth" (selectionChange)="onSelectChange($event)">
+        <mat-option *ngFor="let gender of dateWithAmountOfDays"
+                    value="{{gender.amountOfDays}}">{{ gender.monthName }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-icon-button class="buttonAdd">
+      <mat-icon>add</mat-icon>
+      add new habit
+    </button>
+  </div>
+  <div>
+  </div>
+</mat-toolbar>
+
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> Date.</th>
+      <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+    </ng-container>
+
+
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="journal">
+      <th mat-header-cell *matHeaderCellDef>Journal</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox [(ngModel)]="element.journal"></mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="weight_track">
+      <th mat-header-cell *matHeaderCellDef>Weight track</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox [(ngModel)]="element.checked"></mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="wakatime">
+      <th mat-header-cell *matHeaderCellDef>Wakatime</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox [(ngModel)]="element.checked"></mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="no_fap">
+      <th mat-header-cell *matHeaderCellDef>No fap</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox [(ngModel)]="element.checked"></mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="book">
+      <th mat-header-cell *matHeaderCellDef>Book</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox [(ngModel)]="element.checked"></mat-checkbox>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="daily_goals">
+      <th mat-header-cell *matHeaderCellDef>Daily goals</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox [(ngModel)]="element.checked"></mat-checkbox>
+      </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[30, 28, 31,30,31,30,31,31,30,31,30,31]" #paginator1
+                 clickshowFirstLastButtons></mat-paginator>
+</div>
+
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="tryHabit2" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef>
+      date
+      </th>
+      <td mat-cell *matCellDef="let row;">
+        {{row.date}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Journal">
+    <th mat-header-cell  *matHeaderCellDef>Journal</th>
+      <td mat-cell *matCellDef="let row;">{{row.Journal}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Wakatime">
+      <th mat-header-cell  *matHeaderCellDef>Wakatime</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox [(ngModel)]="element.Wakatime"></mat-checkbox>
+      </td>
+    </ng-container>
+
+<!--    <ng-container matColumnDef="weight_track">-->
+<!--      <th mat-header-cell *matHeaderCellDef>Weight track</th>-->
+<!--      <td mat-cell *matCellDef="let element">-->
+<!--        <mat-checkbox [(ngModel)]="element.checked"></mat-checkbox>-->
+<!--      </td>-->
+<!--    </ng-container>-->
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[30, 28, 31,30,31,30,31,31,30,31,30,31]" #paginator1
+                 clickshowFirstLastButtons></mat-paginator>
+</div>
+
+
+<br>
+{{tryHabit2|json}}
+

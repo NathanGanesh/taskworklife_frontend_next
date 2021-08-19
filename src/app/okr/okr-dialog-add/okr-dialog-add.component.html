@@ -1,0 +1,61 @@
+<h1 mat-dialog-title>Add new OkrObjective</h1>
+<p></p>
+<div mat-dialog-content>
+  <form [formGroup]="okrDialog" class="form"
+        #myForm="ngForm">
+    <mat-form-field class="form-element">
+      <input matInput placeholder="New okr objective title"
+             formControlName="title">
+      <mat-error
+        *ngIf="!okrDialog.controls.title.valid && okrDialog.controls.title.touched">
+        {{ 'This field is required' }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Okr Priority</mat-label>
+      <mat-select formControlName="okrPriority">
+        <mat-option *ngFor="let item of selectedItemsPriority"
+                    [value]="item.value">
+          {{item.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Okr status</mat-label>
+      <mat-select formControlName="okrStatus">
+        <mat-option *ngFor="let item of selectedItemsStatus"
+                    [value]="item.value">
+          {{item.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div>
+      <mat-form-field class="form-element">
+        <input matInput
+               [matDatepicker]="picker"
+               placeholder="Start date"
+               formControlName="startDate"
+        >
+        <mat-datepicker-toggle matSuffix
+                               [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field class="form-element data-picker2">
+        <input matInput
+               [matDatepicker]="picker2"
+               placeholder="End date"
+               formControlName="endDate"
+        >
+        <mat-datepicker-toggle matSuffix
+                               [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button  cdkFocusInitial (click)="onSave()">Save</button>
+</mat-dialog-actions>

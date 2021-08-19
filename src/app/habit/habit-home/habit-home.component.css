@@ -1,0 +1,35 @@
+.flexSpaceBetween {
+  display: flex;
+  justify-content: space-between;
+}
+
+.table-headers {
+  writing-mode: vertical-rl;
+}
+
+.container {
+  padding: 2rem 0rem;
+}
+
+h4 {
+  margin: 2rem 0rem 1rem;
+}
+
+.table-image td, th {
+  vertical-align: middle;
+}
+
+table {
+  width: 100%;
+  border-spacing: 0 8px !important;
+}
+
+td.mat-cell {
+  padding: 16px 0 16px 0;
+}
+
+
+
+
+
+
