@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {Observable} from "rxjs";
-import {HeaderName} from "../interfaces/header-name";
 import {Habit} from "../interfaces/habit";
 
 @Injectable({
@@ -18,9 +17,7 @@ export class HabitService {
   }
 
 
-  getAllHeaderNAmes():Observable<HeaderName[]>{
-    return this.http.get<HeaderName[]>(`${this.apiServerUrl}/headerNames`)
-  }
+
 
   // addNewHabit():Observable<>
 

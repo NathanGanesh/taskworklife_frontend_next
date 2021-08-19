@@ -7,8 +7,7 @@ import {HabitService} from "../../shared/services/habit.service";
 import {Book} from "../../shared/interfaces/book";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Habit} from "../../shared/interfaces/habit";
-import {HeaderName} from "../../shared/interfaces/header-name";
-import {HabitEntry} from "../../shared/interfaces/habit-entry";
+
 import {tap} from "rxjs/operators";
 
 export interface MonthWithDays {
