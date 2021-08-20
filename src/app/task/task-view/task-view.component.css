@@ -1,0 +1,27 @@
+
+.folder-item-input{
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+.mat-expansion-panel-header.mat-expanded {
+  height: 50px;
+}
+.mat-list-base{
+  padding-top: 0px;
+}
+
+.mat-expansion-panel-body {
+  margin:20px
+}
+mat-expansion-panel.mat-expansion-panel{
+  margin: 20px;
+}
+table {
+  width: 100%;
+  border-spacing: 0 4px !important;
+}
+/*254*/
+/*mat-expansion-panel.mat-expansion-panel.folder-item-accord.ng-tns-c254-6.ng-star-inserted.mat-expanded.mat-expansion-panel-spacing {*/
+/*  margin: 5px 19px;*/
+/*}*/

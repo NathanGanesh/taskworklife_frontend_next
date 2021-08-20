@@ -7,7 +7,9 @@ export const environment = {
   apiBaseUrlBook: "http://localhost:8085/api/v1/book",
   apiBaseUrlTask: "http://localhost:8085/api/v1/folder",
   apiBaseUrlJournal: "http://localhost:8085/api/v1/journal",
-  apiBaseUrlOKR:"http://localhost:8085/api/v1/okr"
+  apiBaseUrlOKR:"http://localhost:8085/api/v1/okr",
+  apiBaseUrlHabit:"http://localhost:8085/api/v1/habit",
+  apiBaseUrlGroup:"http://localhost:8085/api/v1/group"
 };
 
 /*
