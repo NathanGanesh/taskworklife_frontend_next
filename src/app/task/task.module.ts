@@ -7,6 +7,7 @@ import { TasksComponent } from './tasks/tasks.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 import {MaterialModule} from "../material/material.module";
 import { TaskViewComponent } from './task-view/task-view.component';
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { TaskViewComponent } from './task-view/task-view.component';
   imports: [
     CommonModule,
     TaskRoutingModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ]
 })
 export class TaskModule { }
