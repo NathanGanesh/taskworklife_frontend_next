@@ -1,4 +1,4 @@
-.side-nav{
+.side-nav {
   border: 2px;
   border-style: solid;
   color: black;
@@ -7,17 +7,36 @@
   height: 100%;
 }
 
-.flex-row{
+.flex-row {
   display: flex;
   height: 100vh;
 }
-.content100vw{
+
+.content100vw {
   width: 100vw;
 }
-.content80vw{
-  width: 80vw;
+
+.content80vw {
+  width: 70vw;
 }
 
-.side-content{
-  width: 20vw;
+.side-content {
+  width: 30vw;
 }
+
+
+.mat-expansion-panel-body {
+  padding: 0 !important;
+}
+
+.folder-item{
+display: flex;
+  cursor: pointer;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/*.mat-list-item-content {*/
+/*  !* width: 100%; *!*/
+/*  justify-content: space-between;*/
+/*}*/
