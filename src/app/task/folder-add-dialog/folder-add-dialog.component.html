@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Add new folder</h1>
+<div mat-dialog-content>
+  <p>New folder title for group <b>{{data.groupName}}</b></p>
+  <mat-form-field >
+    <form (submit)="onSave(folderTitle)">
+      <input [(ngModel)]="folderTitle" type="text" name="folder" matInput>
+    </form>
+  </mat-form-field>
+
+</div>
+<mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button  cdkFocusInitial (click)="onSave(folderTitle)">Save</button>
+</mat-dialog-actions>

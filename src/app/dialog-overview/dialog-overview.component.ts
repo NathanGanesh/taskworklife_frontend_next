@@ -16,8 +16,7 @@ export class DialogOverviewExampleDialog {
   booleanError: boolean = false;
 
   constructor(
-    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
+    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>, @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   onNoClick(): void {

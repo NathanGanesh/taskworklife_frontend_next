@@ -8,6 +8,7 @@ import { ProjectListComponent } from './project-list/project-list.component';
 import {MaterialModule} from "../material/material.module";
 import { TaskViewComponent } from './task-view/task-view.component';
 import {FormsModule} from "@angular/forms";
+import { FolderAddDialogComponent } from './folder-add-dialog/folder-add-dialog.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {FormsModule} from "@angular/forms";
     TaskListComponent,
     TasksComponent,
     ProjectListComponent,
-    TaskViewComponent
+    TaskViewComponent,
+    FolderAddDialogComponent
   ],
   imports: [
     CommonModule,

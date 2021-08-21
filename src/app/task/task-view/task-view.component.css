@@ -25,3 +25,17 @@ table {
 /*mat-expansion-panel.mat-expansion-panel.folder-item-accord.ng-tns-c254-6.ng-star-inserted.mat-expanded.mat-expansion-panel-spacing {*/
 /*  margin: 5px 19px;*/
 /*}*/
+.element_name_checkbox{
+  display: flex;
+}
+th.mat-header-cell.cdk-header-cell.cdk-column-deleteEmployee {
+  display: flex;
+  cursor: pointer;
+}
+.mat-title-style{
+  width: 100%;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  align-content: center;
+}

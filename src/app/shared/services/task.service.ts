@@ -19,4 +19,7 @@ export class TaskService {
     return  this.http.get<GroupItem[]>(`${this.apiServerUrl}/all`)
   }
 
+  addNewFolderToGroup(res: any) {
+
+  }
 }
