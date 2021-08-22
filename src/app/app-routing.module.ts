@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 import {NestedTreeComponent} from "./nested-tree/nested-tree.component";
 import {NotFoundComponentComponent} from "./not-found-component/not-found-component.component";
 import {HomeComponentComponent} from "./home-component/home-component.component";
@@ -21,7 +21,10 @@ const routes: Routes = [{
   {path: "**", component: NotFoundComponentComponent}];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [  RouterModule.forRoot(routes, {
+    paramsInheritanceStrategy: 'always',
+    preloadingStrategy: PreloadAllModules
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

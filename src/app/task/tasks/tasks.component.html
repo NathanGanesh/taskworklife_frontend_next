@@ -1,66 +1,35 @@
 <div class="flex-row">
   <mat-sidenav-container class="">
-    <mat-sidenav #sidenav mode="side" [(opened)]="opened" class="side-content">
+    <mat-sidenav #sidenav mode="side" [(opened)]="opened" class="side-content" [ngStyle]="{ 'width.em': sidenavWidth }" (mouseenter)="increase()"
+                 (mouseleave)="decrease()">
       <ng-container *ngFor="let folder of tasks; let i = index">
         <mat-accordion multi="true" [togglePosition]="'before'">
-          <mat-expansion-panel (opened)="panelOpenState = true"
-                               (closed)="panelOpenState = false" class="mat-exp">
+          <mat-expansion-panel  class="mat-exp">
             <mat-expansion-panel-header>
-              <mat-panel-title>
-
-
-                  {{folder.groupName}}
-
+              <mat-panel-title   routerLink="{{folder.id}}">
+                {{folder.groupName}}
               </mat-panel-title>
             </mat-expansion-panel-header>
             <mat-list role="list">
               <mat-list-item (click)="onTaskItemClick(folder)" role="listitem"
-                             *ngFor="let taskItem of folder.folders">
+                             *ngFor="let taskItem of folder.folders"  routerLink="{{folder.id}}/{{taskItem.id}}">
                 <div class="folder-item">
                   <div>
                     <p>{{taskItem.name}}</p>
                   </div>
                   <div>
-
                     <p>{{taskItem.tasks.length}}</p>
                   </div>
                 </div>
-
               </mat-list-item>
             </mat-list>
           </mat-expansion-panel>
         </mat-accordion>
       </ng-container>
-      <!--      <mat-accordion>-->
-      <!--        <mat-expansion-panel (opened)="panelOpenState = true"-->
-      <!--                             (closed)="panelOpenState = false">-->
-      <!--          <mat-expansion-panel-header>-->
-      <!--            <mat-panel-title>-->
-      <!--              Self aware panel-->
-      <!--            </mat-panel-title>-->
-      <!--          </mat-expansion-panel-header>-->
-      <!--          <mat-list role="list" >-->
-      <!--            <mat-list-item role="listitem">Item 1</mat-list-item>-->
-      <!--            <mat-list-item role="listitem">Item 2</mat-list-item>-->
-      <!--            <mat-list-item role="listitem">Item 3</mat-list-item>-->
-      <!--          </mat-list>-->
-      <!--        </mat-expansion-panel>-->
-      <!--      </mat-accordion>-->
 
     </mat-sidenav>
-    <mat-sidenav-content [ngClass]="opened ? 'content80vw' : 'content100vw'" class="content">
-      <app-task-view [selectedItem]="selectedItem"></app-task-view>
-      <!--      <mat-toolbar color="primary" class="flexSpaceBetween">-->
-      <!--        <h1 class="fill-remaining-space">Add new book</h1>-->
-      <!--      </mat-toolbar>-->
-      <p>
-        <button mat-button (click)="sidenav.toggle()">Menu</button>
-      </p>
-      <!--      <mat-list role="list">-->
-      <!--        <mat-list-item role="listitem">Item 1</mat-list-item>-->
-      <!--        <mat-list-item role="listitem">Item 2</mat-list-item>-->
-      <!--        <mat-list-item role="listitem">Item 3</mat-list-item>-->
-      <!--      </mat-list>-->
+    <mat-sidenav-content class="content">
+    <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

@@ -1,6 +1,8 @@
+
 <div *ngIf="!!selectedItem">
   <mat-toolbar color="primary" class="flexSpaceBetween">
     <h1 class="fill-remaining-space">{{selectedItem.groupName}}</h1>
+
   </mat-toolbar>
   <mat-accordion multi="true"  [togglePosition]="'before'">
     <mat-expansion-panel (opened)="panelOpenState = true"
@@ -16,7 +18,7 @@
             </mat-panel-title>
           </div>
           <div>
-            <mat-panel-description style="padding-right: 110px;" (click)="addNewFolder()">
+            <mat-panel-description style="padding-right: 110px;" (click)="addNewFolder($event)">
               <button mat-icon-button aria-label="add"  value="add">
                 <mat-icon>add</mat-icon>
                 Add new folder
@@ -93,11 +95,11 @@
                 </td>
               </ng-container>
               <ng-container matColumnDef="deleteEmployee">
-                <th mat-header-cell *matHeaderCellDef>
+                <th mat-header-cell *matHeaderCellDef (click)="onAddFolderItem(folder)">
                   <mat-icon>add</mat-icon>
                   Add
                 </th>
-                <td mat-cell *matCellDef="let element">
+                <td mat-cell *matCellDef="let element" (click)="onDeleteFolderItem(element.id)">
                   <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
                     <mat-icon>delete</mat-icon>
                   </button>
@@ -116,11 +118,11 @@
     </mat-expansion-panel>
   </mat-accordion>
   <!--  <ng-container *ngFor="let folder of selectedItem.folders; let i = index">-->
-  {{selectedItem|json}}
+<!--  {{selectedItem|json}}-->
 
   <!--  </ng-container>-->
 </div>
-<!--<p>hey</p>-->
+
 <!--<mat-toolbar color="primary" class="flexSpaceBetween" *ngIf="selectedItem!==undefined">-->
 <!--  <h1 class="fill-remaining-space">hey</h1>-->
 <!--</mat-toolbar>-->

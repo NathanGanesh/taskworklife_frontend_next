@@ -40,12 +40,6 @@ export class HomeComponentComponent implements OnInit {
 
   }
 
-  // menu:NavItem[] = [
-  //   {
-  //     "displayName":"inbox",
-  //
-  //   }
-  // ]
 
   increase() {
     this.sidenavWidth = 15;

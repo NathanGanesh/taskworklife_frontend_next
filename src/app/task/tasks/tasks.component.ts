@@ -18,8 +18,7 @@ export class TasksComponent implements OnInit {
   tasks: GroupItem[] = [];
   //@ts-ignore
   selectedItem:GroupItem = new GroupItem( );
-
-  panelOpenState: boolean = true;
+  sidenavWidth = 4;
 
   constructor(private taskService:TaskService) {
 
@@ -48,4 +47,11 @@ export class TasksComponent implements OnInit {
   }
 
 
+  increase() {
+    this.sidenavWidth = 15;
+  }
+
+  decrease() {
+    this.sidenavWidth = 4;
+  }
 }

@@ -15,17 +15,22 @@ export class FolderAddDialogComponent {
   }
 
   ngOnInit(): void {
+    console.log(this.data)
   }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  onSave(folderTitle: string): void {
-    let data={
-      folderTitle:folderTitle,
-      id:this.data.id
+  onSave(): void {
+    if (this.folderTitle === "") {
+      this.dialogRef.close()
     }
+    let data = {
+      folderTitle: this.folderTitle,
+      id: this.data.id
+    }
+
     this.dialogRef.close(data);
   }
 }
