@@ -10,6 +10,7 @@ import {ActivatedRoute} from "@angular/router";
 import {FolderItemDialogComponent} from "../folder-item-dialog/folder-item-dialog.component";
 import {Folder} from "../../shared/interfaces/task/folder";
 import {TaskAddToFolder} from "../../shared/interfaces/task/TaskAddToFolder";
+import {EditFolderComponent} from "../edit-folder/edit-folder.component";
 
 @Component({
   selector: 'app-task-view',
@@ -32,18 +33,17 @@ export class TaskViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id'];
-    console.log(this.route.snapshot.params['id'])
-    this.loadSingleGroup(this.id);
+    this.route.params.subscribe(res => {
+      this.id = res.id;
+      this.loadSingleGroup(this.id);
+    })
+
   }
 
-  testItem(element: any) {
-    console.log(element)
-  }
-
-
+  // new Date().toISOString().slice(0,10)
   onSelectChange(element: any) {
-    console.log(element)
+    this.taskService.editTaskItemFromFolder(element).subscribe()
+
   }
 
   loadSingleGroup(id: number) {
@@ -65,29 +65,56 @@ export class TaskViewComponent implements OnInit {
     })
     dialogRef.afterClosed().subscribe((res) => {
       if (res !== undefined) {
-        // if ()
         this.taskService.addNewFolderToGroup(res).pipe(tap(() => this.loadSingleGroup(res.id))).subscribe();
       }
     })
   }
 
-  onDeleteFolderItem(element: number) {
-    console.log(element)
-    console.log("deleting folder item")
-  }
+  // onDeleteFolderItem(element: number) {
+  //   this.taskService.deleteFolderById(element).subscribe();
+  //
+  // }
 
   onAddFolderItem(folder: Folder) {
     const dialogRef = this.addFolderDialog.open(FolderItemDialogComponent, {data: {id: folder.id}});
-    dialogRef.afterClosed().subscribe((res:TaskAddToFolder) => {
-      if (res!==undefined){
+    dialogRef.afterClosed().subscribe((res: TaskAddToFolder) => {
+      if (res !== undefined) {
         console.log(res)
-        this.taskService.addNewTaskItemToFolder(res).pipe(tap(() => this.loadSingleFolder(res.id))).subscribe()
+        this.taskService.addNewTaskItemToFolder(res).pipe(tap(() => this.loadSingleGroup(this.selectedItem.id))).subscribe()
       }
     })
 
   }
 
-   loadSingleFolder(id:any) {
-      this.taskService.getFolderById(id);
+  loadSingleFolder(id: any) {
+    this.taskService.getFolderById(id).subscribe();
+  }
+
+  onDeleteTaskItem(folderId: number, id: number) {
+    this.taskService.deleteTaskById(folderId, id).pipe((tap(() => this.loadSingleGroup(this.selectedItem.id)))).subscribe()
+  }
+
+  onDeleteFolderItem($event: MouseEvent, id: number) {
+    $event.stopPropagation();
+    this.taskService.deleteFolderById(this.selectedItem.id, id).pipe((tap(() => this.loadSingleGroup(this.selectedItem.id)))).subscribe();
+  }
+
+  onSelectDateChange(element: any) {
+    let s = new Date(element.date.getFullYear(), element.date.getMonth(), element.date.getDate(), element.date.getHours(), element.date.getMinutes() - element.date.getTimezoneOffset()).toISOString();
+    let newObject = JSON.parse(JSON.stringify(element));
+    newObject.date = s;
+    this.taskService.editTaskItemFromFolder(newObject).subscribe()
+  }
+
+  onEditFolder($event: MouseEvent, nameFolder: string, id: number) {
+    $event.stopPropagation();
+
+    const dialogRef = this.addFolderDialog.open(EditFolderComponent, {data: {id:id, title:nameFolder}});
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res !== undefined) {
+        console.log(res)
+        this.taskService.editFolder(res).pipe(tap(() => this.loadSingleGroup(this.selectedItem.id))).subscribe()
+      }
+    })
   }
 }

@@ -1,10 +1,9 @@
-
 <div *ngIf="!!selectedItem">
-  <mat-toolbar color="primary" class="flexSpaceBetween">
+  <mat-toolbar color="primary">
     <h1 class="fill-remaining-space">{{selectedItem.groupName}}</h1>
 
   </mat-toolbar>
-  <mat-accordion multi="true"  [togglePosition]="'before'">
+  <mat-accordion multi="true" [togglePosition]="'before'">
     <mat-expansion-panel (opened)="panelOpenState = true"
                          (closed)="panelOpenState = false"
                          class="mat-exp">
@@ -19,7 +18,7 @@
           </div>
           <div>
             <mat-panel-description style="padding-right: 110px;" (click)="addNewFolder($event)">
-              <button mat-icon-button aria-label="add"  value="add">
+              <button mat-icon-button aria-label="add" value="add">
                 <mat-icon>add</mat-icon>
                 Add new folder
               </button>
@@ -29,25 +28,47 @@
       </mat-expansion-panel-header>
 
       <ng-container *ngFor="let folder of selectedItem.folders; let i = index">
+        {{selectedItem.folders|json}}
         <mat-accordion multi="true" [togglePosition]="'before'">
           <mat-expansion-panel (opened)="nestedOpenState = true"
                                (closed)="nestedOpenState = false" class="folder-item-accord">
             <mat-expansion-panel-header>
-              <mat-panel-title>
-                {{folder.name}}
-              </mat-panel-title>
+              <div class="mat-title-style">
+                <div>
+
+                  <mat-panel-title>
+                    {{folder.name}}
+                  </mat-panel-title>
+                </div>
+                <div>
+                  <mat-panel-description>
+                    <div>
+                      <button mat-icon-button aria-label="add" value="add"
+                              (click)="onDeleteFolderItem($event, folder.id)">
+                        <mat-icon>delete</mat-icon>
+
+                      </button>
+                    </div>
+                    <div>
+                      <button mat-icon-button aria-label="edit" value="edit" (click)="onEditFolder($event, folder.name, folder.id)">
+                        <mat-icon>edit</mat-icon>
+
+                      </button>
+                    </div>
+                  </mat-panel-description>
+                </div>
+              </div>
             </mat-expansion-panel-header>
 
             {{folder|json}}
             <mat-divider></mat-divider>
 
-            <table mat-table [dataSource]="folder.tasks" class="mat-elevation-z8">
+            <table mat-table [dataSource]="folder.tasks" matSort  class="mat-elevation-z8">
               <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef></th>
                 <td mat-cell *matCellDef="let element">
                   <div class="element_name_checkbox">
-
-                    <mat-checkbox [(ngModel)]="element.completed" (click)="testItem(element)"></mat-checkbox>
+                    <mat-checkbox [(ngModel)]="element.completed" (change)="onSelectChange(element)"></mat-checkbox>
                     <form (ngSubmit)="onSelectChange(element)">
                       <input matInput [(ngModel)]="element.name" name="name">
                     </form>
@@ -59,16 +80,15 @@
                 <th mat-header-cell *matHeaderCellDef> Deadline</th>
                 <td mat-cell *matCellDef="let element" style="width: 250px;">
                   <input [(ngModel)]="element.date"
+                         name="datepicker"
                          [matDatepicker]="picker"
-                         (dateChange)="onSelectChange(element)"
+                         (dateChange)="onSelectDateChange(element)"
                   >
                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                   <mat-datepicker #picker></mat-datepicker>
                 </td>
 
-                <!--                <td mat-cell *matCellDef="let element"> {{element.date}} </td>-->
               </ng-container>
-
               <ng-container matColumnDef="priority" style="padding-right: 20px;">
                 <th mat-header-cell *matHeaderCellDef> Priority</th>
                 <td mat-cell *matCellDef="let element" style="padding-right: 60px;">
@@ -80,15 +100,12 @@
                   </mat-select>
                 </td>
               </ng-container>
-              <!--              <ng-container matColumnDef="status">-->
-              <!--                <th mat-header-cell *matHeaderCellDef> Status</th>-->
-              <!--                <td mat-cell *matCellDef="let element"> {{element.status}} </td>-->
-              <!--              </ng-container>-->
+
               <ng-container matColumnDef="status">
                 <th mat-header-cell *matHeaderCellDef> Status</th>
                 <td mat-cell *matCellDef="let element" style="padding-right: 48px;">
                   <mat-select [(ngModel)]="element.status" (selectionChange)="onSelectChange(element)">
-                    <mat-option [value]="element.status" *ngFor="let statusItem of status">
+                    <mat-option value={{statusItem}} *ngFor="let statusItem of status">
                       {{ statusItem }}
                     </mat-option>
                   </mat-select>
@@ -99,7 +116,7 @@
                   <mat-icon>add</mat-icon>
                   Add
                 </th>
-                <td mat-cell *matCellDef="let element" (click)="onDeleteFolderItem(element.id)">
+                <td mat-cell *matCellDef="let element" (click)="onDeleteTaskItem(folder.id,element.id)">
                   <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
                     <mat-icon>delete</mat-icon>
                   </button>
@@ -118,7 +135,7 @@
     </mat-expansion-panel>
   </mat-accordion>
   <!--  <ng-container *ngFor="let folder of selectedItem.folders; let i = index">-->
-<!--  {{selectedItem|json}}-->
+  <!--  {{selectedItem|json}}-->
 
   <!--  </ng-container>-->
 </div>

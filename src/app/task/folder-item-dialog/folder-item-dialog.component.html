@@ -1,0 +1,49 @@
+<div class="folder-add">
+  <h1 mat-dialog-title>Add new Task for folder</h1>
+
+  <div mat-dialog-content>
+      <form (submit)="onSave()" class="folder-item-dialog">
+        <mat-form-field>
+          <mat-label>Title</mat-label>
+        <input [(ngModel)]="folderTaskTitle" type="text" name="folder" matInput>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Priority</mat-label>
+          <mat-select name="priority" [(ngModel)]="priorityItem">
+            <mat-option *ngFor="let item of priority"
+                        [value]="item">
+              {{item}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Status</mat-label>
+          <mat-select name="status" [(ngModel)]="statusItem">
+            <mat-option *ngFor="let item of status"
+                        [value]="item">
+              {{item}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <input matInput
+                 [matDatepicker]="picker"
+                 placeholder="Deadline"
+                 [(ngModel)]="date"
+                name="Deadline"
+          >
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+      </form>
+
+  </div>
+  <mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button  cdkFocusInitial (click)="onSave()">Save</button>
+  </mat-dialog-actions>
+</div>

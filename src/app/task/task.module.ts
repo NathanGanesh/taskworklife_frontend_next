@@ -10,6 +10,9 @@ import { TaskViewComponent } from './task-view/task-view.component';
 import {FormsModule} from "@angular/forms";
 import { FolderAddDialogComponent } from './folder-add-dialog/folder-add-dialog.component';
 import { FolderItemDialogComponent } from './folder-item-dialog/folder-item-dialog.component';
+import { AddGroupDialogComponent } from './add-group-dialog/add-group-dialog.component';
+import {MAT_DATE_LOCALE} from "@angular/material/core";
+import { EditFolderComponent } from './edit-folder/edit-folder.component';
 
 
 @NgModule({
@@ -19,13 +22,19 @@ import { FolderItemDialogComponent } from './folder-item-dialog/folder-item-dial
     ProjectListComponent,
     TaskViewComponent,
     FolderAddDialogComponent,
-    FolderItemDialogComponent
+    FolderItemDialogComponent,
+    AddGroupDialogComponent,
+    EditFolderComponent
   ],
   imports: [
     CommonModule,
     TaskRoutingModule,
     MaterialModule,
     FormsModule
-  ]
+  ],
+  providers:[{
+    provide: MAT_DATE_LOCALE,
+    useValue: 'nl-NL'
+  }]
 })
 export class TaskModule { }

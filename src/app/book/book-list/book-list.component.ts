@@ -27,7 +27,7 @@ export class BookListComponent implements OnInit {
 
   @Input() searchValue:string = '';
 
-  constructor(public dialog: MatDialog, private bookService:BookService) {
+  constructor(public dialog: MatDialog) {
 
   }
 

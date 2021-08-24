@@ -34,9 +34,13 @@ display: flex;
   cursor: pointer;
   justify-content: space-between;
   width: 100%;
+  align-items: center;
 }
 
-
+.flex-row {
+  display:grid  !important;
+  height: 100vh;
+}
 /*.mat-list-item-content {*/
 /*  !* width: 100%; *!*/
 /*  justify-content: space-between;*/

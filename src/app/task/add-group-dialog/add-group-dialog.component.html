@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Add new Group</h1>
+<form (submit)="onSave()" class="folder-item-dialog">
+  <mat-form-field>
+    <mat-label>Title</mat-label>
+    <input [(ngModel)]="groupName" type="text" name="folder" matInput>
+  </mat-form-field>
+</form>
+<mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button  cdkFocusInitial (click)="onSave()">Save</button>
+</mat-dialog-actions>

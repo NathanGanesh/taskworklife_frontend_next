@@ -1,35 +1,69 @@
 <div class="flex-row">
   <mat-sidenav-container class="">
-    <mat-sidenav #sidenav mode="side" [(opened)]="opened" class="side-content" [ngStyle]="{ 'width.em': sidenavWidth }" (mouseenter)="increase()"
+    <mat-sidenav #sidenav mode="side" [(opened)]="opened" class="side-content" [ngStyle]="{ 'width.em': sidenavWidth }"
+                 (mouseenter)="increase()"
                  (mouseleave)="decrease()">
-      <ng-container *ngFor="let folder of tasks; let i = index">
+      <ng-container *ngFor="let folder of tasks; let z = index">
         <mat-accordion multi="true" [togglePosition]="'before'">
-          <mat-expansion-panel  class="mat-exp">
+          <mat-expansion-panel class="mat-exp">
             <mat-expansion-panel-header>
-              <mat-panel-title   routerLink="{{folder.id}}">
-                {{folder.groupName}}
+              <mat-panel-title>
+                <div class="folder-item">
+                  <div routerLink="{{folder.id}}" style="text-align: center; ">
+                    {{folder.groupName}}
+                  </div>
+                  <div (click)="$event.stopImmediatePropagation()">
+                    <button mat-icon-button [matMenuTriggerFor]="menu"
+                            #menuTrigger="matMenuTrigger" >
+                      <mat-icon>menu</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu" [overlapTrigger]="false">
+                      <span>
+      <button mat-menu-item (click)="deleteGroupById(folder.id)">
+        <mat-icon>delete</mat-icon>
+        <span>Delete</span>
+  </button>
+  <button mat-menu-item (click)="editGroupById(folder.groupName, folder.id)">
+        <mat-icon>edit</mat-icon>
+        <span>Edit</span>
+      </button>
+  </span>
+                    </mat-menu>
+
+                  </div>
+                </div>
               </mat-panel-title>
             </mat-expansion-panel-header>
             <mat-list role="list">
               <mat-list-item (click)="onTaskItemClick(folder)" role="listitem"
-                             *ngFor="let taskItem of folder.folders"  routerLink="{{folder.id}}/{{taskItem.id}}">
+                             *ngFor="let taskItem of folder.folders; let i = index"
+                             routerLink="{{folder.id}}/{{taskItem.id}}">
                 <div class="folder-item">
                   <div>
                     <p>{{taskItem.name}}</p>
                   </div>
                   <div>
                     <p>{{taskItem.tasks.length}}</p>
+
                   </div>
                 </div>
               </mat-list-item>
+
             </mat-list>
           </mat-expansion-panel>
         </mat-accordion>
+        <div *ngIf="z+1== tasks.length" (click)="addNewGroup()">
+          <mat-panel-title>
+            <button mat-icon-button aria-label="add" value="add">
+              <mat-icon>add</mat-icon>
+              Add Group
+            </button>
+          </mat-panel-title>
+        </div>
       </ng-container>
-
     </mat-sidenav>
     <mat-sidenav-content class="content">
-    <router-outlet></router-outlet>
+      <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
